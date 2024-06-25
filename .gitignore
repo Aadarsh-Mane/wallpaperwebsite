@@ -7,8 +7,6 @@
 
 # testing
 /coverage
-/src/pages/home.jsx
-/src/firebase.js
 # production
 /build
 
