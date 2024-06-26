@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getTodaysMatches } from "../api";
-import './MatchWallpaperFetcher.css'
-import { deleteWallpaper, deleteWallpaperByImageURL, getDocIdByImageURL } from "../firebase";
-import { fetchWallpaperByMatch } from "../fetchWall";
+import '../styles/MatchWallpaperFetcher.css'
+import { getTodaysMatches } from '../services/api'
+import { deleteWallpaper, getDocIdByImageURL } from '../services/firebase'
+import { fetchWallpaperByMatch } from '../services/fetchWall'
 const MatchWallpaperFetcher = () => {
     const [matches, setMatches] = useState([]);
     const [selectedMatch, setSelectedMatch] = useState(null);
     const [wallpapers, setWallpapers] = useState([]);
-    const [loading, setLoading] = useState(false); // State for loading animation
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchMatches = async () => {
@@ -50,7 +50,6 @@ const MatchWallpaperFetcher = () => {
                 const docId = await getDocIdByImageURL(imageURL);
                 if (docId) {
                     await deleteWallpaper(docId, imageURL);
-                    // Refresh the list of wallpapers after deletion
                     if (selectedMatch) {
                         const refreshedWallpapers = await fetchWallpaperByMatch(selectedMatch);
                         setWallpapers(refreshedWallpapers);
@@ -65,7 +64,6 @@ const MatchWallpaperFetcher = () => {
             }
         }
     };
-
 
     return (
         <div className="fetcher-container">
@@ -82,17 +80,24 @@ const MatchWallpaperFetcher = () => {
             {loading ? (
                 <div className="fetch-loader">
                     <h1>Loading...</h1>
-                    {/* Add loading animation or spinner here */}
                 </div>
             ) : (
-                <div>
+                <div className="wallpapers-grid">
                     {wallpapers.length > 0 ? (
                         wallpapers.map((wallpaper, index) => (
                             <div key={index} className="wallpaper-item">
                                 <h2>{wallpaper.title}</h2>
-                                <h2>{wallpaper.teamA} vs {wallpaper.teamB} - {wallpaper.day}</h2>
-                                <img src={wallpaper.imageURL} alt={`${wallpaper.teamA} vs ${wallpaper.teamB} wallpaper`} className="wallpaper-image" />
-                                <button onClick={() => handleDelete(wallpaper.imageURL)}>Delete</button>
+                                <img
+                                    src={wallpaper.imageURL}
+                                    alt={`${wallpaper.teamA} vs ${wallpaper.teamB} wallpaper`}
+                                    className="wallpaper-image"
+                                />
+                                <button
+                                    onClick={() => handleDelete(wallpaper.imageURL)}
+                                    className="wallpaper-delete-button"
+                                >
+                                    Delete
+                                </button>
                             </div>
                         ))
                     ) : (
@@ -103,5 +108,4 @@ const MatchWallpaperFetcher = () => {
         </div>
     );
 };
-
 export default MatchWallpaperFetcher;

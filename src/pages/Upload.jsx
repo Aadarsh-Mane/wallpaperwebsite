@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getTodaysMatches } from "../api";
-// import uploadWallpaper from '../firebase';
-import './MatchWallpaperUploader.css'; // Import custom CSS for styling
-import { uploadWallpaper } from "../firebase";
-
+import { uploadWallpaper } from '../services/firebase';
+import '../styles/MatchWallpaperUploader.css'; // Import custom CSS for styling
+// import { uploadWallpaper } from "../firebase";
+import { getTodaysMatches } from "../services/api";
 const MatchWallpaperUploader = () => {
     const [matches, setMatches] = useState([]);
     const [selectedMatch, setSelectedMatch] = useState(null);

@@ -1,3 +1,8 @@
+body {
+  background-color: #000000; /* Choose your desired background color */
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -5,6 +10,11 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+html, #root, .App {
+  min-height: 100vh;
+  height: 100%;
+  background-color: inherit; /* Inherit the body background color */
 }
 
 @media (prefers-reduced-motion: no-preference) {

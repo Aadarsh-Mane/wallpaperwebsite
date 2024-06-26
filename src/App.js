@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
 
-import WallpaperUploader from './pages/Upload';
-import MatchWallpaperUploader from './pages/Upload';
-import MatchWallpaperFetcher from './pages/Fetcher';
-import Navbar from './pages/NavBar';
+import  Home from'../src/components/HomeBar'
+import Navbar from '../src/components/NavBar'
+import MatchWallpaperUploader from '../src/pages/Upload'
+import MatchWallpaperFetcher from '../src/pages/Fetcher'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/HomeBar';
+import WallpaperOfTheDay from './pages/WallpaperDay';
 
 
 function App() {
   return (
       <Router>
-          <div className="App">
-              <Navbar /> {/* Add the Navbar component */}
+          <div>
+              <Navbar />
               <Routes>
                   <Route path="/" element={<Home />} /> 
                   <Route path="/upload" element={<MatchWallpaperUploader />} />
                   <Route path="/fetch" element={<MatchWallpaperFetcher />} />
+                  <Route path="/theday" element={<WallpaperOfTheDay />} />
               </Routes>
           </div>
       </Router>

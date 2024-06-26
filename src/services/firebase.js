@@ -1,13 +1,10 @@
 import { v4 as uuidv4 } from 'uuid'; // Import UUID library
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, query, serverTimestamp, where } from "firebase/firestore";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { useState } from 'react';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDOWprmEMMEKiKbM4Sa8LlBMHF9nryMyqg",
   authDomain: "wallpaper-9dd6b.firebaseapp.com",
@@ -59,25 +56,6 @@ const firestore = getFirestore(app);
   }
 };
 
-
-//  const deleteWallpaper = async (docId, imageURL) => {
-//   try {
-//       // Step 1: Delete document from Firestore
-//       await deleteDoc(doc(firestore, 'wallpapers', docId));
-
-//       // Step 2: Optionally delete image from storage if imageURL exists
-//       if (imageURL) {
-//           const imageRef = ref(storage, imageURL);
-//           await deleteObject(imageRef);
-//       }
-//       console.log('Deleting wallpaper:', docId, imageURL);
-
-//       console.log("Wallpaper deleted successfully!");
-//   } catch (error) {
-//       console.error("Error deleting wallpaper:", error);
-//       throw error; // Optionally handle error as per your application's error handling strategy
-//   }
-// };
 const deleteWallpaper = async (docId) => {
   try {
     await deleteDoc(doc(firestore, 'wallpapers', docId));
@@ -107,4 +85,6 @@ const deleteWallpaper = async (docId) => {
   }
 };
 
-export { deleteWallpaper,uploadWallpaper, getDocIdByImageURL,};
+
+
+export { deleteWallpaper,uploadWallpaper, getDocIdByImageURL,firestore,storage};

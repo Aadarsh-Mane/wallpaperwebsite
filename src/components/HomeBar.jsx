@@ -1,11 +1,10 @@
 import React from 'react';
 import Navbar from './NavBar';
-import './Home.css'; // Import your custom CSS for homepage styling
-
+import '../styles/Home.css'
 const HomeBar = () => {
     return (
         <div className="home">
-            {/* <Navbar /> Assuming you have a Navbar component */}
+            {/* <Navbar /> Include Navbar if it's part of the design */}
             <div className="home-content">
                 <h1 className="company-namee">MAR Wallpaper</h1>
                 <p className="slogan">Discover and download stunning wallpapers for free!</p>
