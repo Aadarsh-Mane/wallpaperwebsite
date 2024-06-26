@@ -23,7 +23,9 @@ function App({ isAuthenticated }) {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (id === 'marwallpaper' && password === 'ronaldo') {
+        // if (id === 'marwallpaper' && password === 'ronaldo') {
+            if (id.trim() === 'marwallpaper' && password.trim() === 'ronaldo') {
+
             setIsAuth(true);
             setShowDialog(false);
         } else {

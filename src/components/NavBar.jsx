@@ -18,10 +18,10 @@ const Navbar = () => {
                 <h1 className="company-name">MAR Wallpaper</h1>
             </div>
             <div className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/upload" className="nav-link">Upload Wallpaper</Link>
-                <Link to="/fetch" className="nav-link">Fetch Wallpapers</Link>
-                <Link to="/theday" className="nav-link">Wallpaper of the Day</Link>
+                <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                <Link to="/upload" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Upload Wallpaper</Link>
+                <Link to="/fetch" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Fetch Wallpapers</Link>
+                <Link to="/theday" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Wallpaper of the Day</Link>
             </div>
             <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
                 ☰

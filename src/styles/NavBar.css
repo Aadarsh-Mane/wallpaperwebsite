@@ -7,6 +7,7 @@
     background-color: #000000;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* Make the navbar relative to position the toggle button */
 }
 
 .logo-container {
@@ -40,6 +41,7 @@
 .nav-links {
     display: flex;
     justify-content: space-around;
+    transition: all 0.3s ease; /* Smooth transition for links */
 }
 
 .nav-link {
@@ -60,12 +62,15 @@
 }
 
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Hidden by default */
     background: none;
     border: none;
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    position: absolute; /* Position it absolutely within the navbar */
+    right: 20px; /* Adjust the distance from the right edge */
+    top: 15px; /* Adjust the distance from the top edge */
 }
 
 @media (max-width: 768px) {
