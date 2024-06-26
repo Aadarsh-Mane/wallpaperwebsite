@@ -9,8 +9,7 @@
 /coverage
 # production
 /build
-/src/pages/WallpaperDay.jsx
-/src/styles/WallpaperDay.css
+
 # misc
 .DS_Store
 .env.local

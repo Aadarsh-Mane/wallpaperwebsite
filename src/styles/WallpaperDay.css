@@ -1,0 +1,99 @@
+/* src/styles/WallpaperOfTheDay.css */
+
+.upload-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+}
+
+.upload-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.upload-container input[type="text"],
+.upload-container input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.upload-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-container button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.upload-container button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.wallpaper-list {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.wallpaper-item {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.wallpaper-item h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.wallpaper-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.wallpaper-item button {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wallpaper-item button:hover {
+    background-color: #c82333;
+}
+
+@media (min-width: 600px) {
+    .wallpaper-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .wallpaper-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
