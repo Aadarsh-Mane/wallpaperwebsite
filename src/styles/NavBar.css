@@ -1,3 +1,5 @@
+/* NavBar.css */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -24,10 +26,10 @@
     color: #fff;
     font-size: 1.5rem;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example of specifying a font */
-    letter-spacing: 1px; /* Add slight letter spacing for clarity */
-    text-transform: uppercase; /* Convert text to uppercase for emphasis */
-    font-weight: bold; /* Ensure the company name stands out */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
@@ -37,6 +39,7 @@
 
 .nav-links {
     display: flex;
+    justify-content: space-around;
 }
 
 .nav-link {
@@ -44,7 +47,7 @@
     text-decoration: none;
     margin-right: 20px;
     transition: color 0.3s ease; /* Smooth color transition */
-    font-weight: bold; /* Enhance readability */
+    font-weight: bold;
 }
 
 .nav-link:hover {
@@ -56,23 +59,45 @@
     transform: scale(1.2); /* Enlarge the logo on hover */
 }
 
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 10px; /* Adjust padding for smaller screens */
     }
 
-    .logo {
-        margin-bottom: 10px; /* Space between logo and company name */
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
     }
 
     .nav-links {
         flex-direction: column;
+        align-items: center;
+        display: none; /* Hide by default on mobile */
         width: 100%;
+        background-color: #000;
+        padding: 10px 0; /* Padding around the links */
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when active */
     }
 
     .nav-link {
         margin: 10px 0;
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Show the mobile menu toggle button */
     }
 }
