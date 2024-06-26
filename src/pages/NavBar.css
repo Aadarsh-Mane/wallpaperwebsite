@@ -1,0 +1,78 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px; /* Adjust height as needed */
+    width: 40px; /* Make the logo circular */
+    border-radius: 50%; /* Make it a circle */
+    margin-right: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.company-name {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example of specifying a font */
+    letter-spacing: 1px; /* Add slight letter spacing for clarity */
+    text-transform: uppercase; /* Convert text to uppercase for emphasis */
+    font-weight: bold; /* Ensure the company name stands out */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.company-name:hover {
+    color: #f39c12; /* Change color on hover */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.3s ease; /* Smooth color transition */
+    font-weight: bold; /* Enhance readability */
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #f39c12; /* Change color on hover */
+}
+
+.logo:hover {
+    transform: scale(1.2); /* Enlarge the logo on hover */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Space between logo and company name */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link {
+        margin: 10px 0;
+    }
+}
