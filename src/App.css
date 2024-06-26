@@ -1,20 +1,35 @@
-body {
-  background-color: #000000; /* Choose your desired background color */
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
 .App {
   text-align: center;
+}
+.login-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.login-dialog form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-dialog label {
+  margin: 10px 0;
+}
+
+.login-dialog button {
+  margin-top: 20px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-html, #root, .App {
-  min-height: 100vh;
-  height: 100%;
-  background-color: inherit; /* Inherit the body background color */
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -86,7 +86,7 @@ const MatchWallpaperFetcher = () => {
                     {wallpapers.length > 0 ? (
                         wallpapers.map((wallpaper, index) => (
                             <div key={index} className="wallpaper-item">
-                                <h2>{wallpaper.title}</h2>
+                                <h4>{wallpaper.title}</h4>
                                 <img
                                     src={wallpaper.imageURL}
                                     alt={`${wallpaper.teamA} vs ${wallpaper.teamB} wallpaper`}
