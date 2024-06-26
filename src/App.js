@@ -1,11 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import { Home } from './pages/home';
+
+import WallpaperUploader from './pages/Upload';
+import MatchWallpaperUploader from './pages/Upload';
+import MatchWallpaperFetcher from './pages/Fetcher';
 
 function App() {
   return (
     <div className="App">
-    <Home/>
+    {/* <UploadForm/> */}
+    {/* <WallpaperUploader/
+    > */}
+    <MatchWallpaperUploader/>
+    <MatchWallpaperFetcher/>
+    {/* <TodayMatchesWallpapers/> */}
+    {/* <DisplayWallpapers/> */}
     </div>
   );
 }
