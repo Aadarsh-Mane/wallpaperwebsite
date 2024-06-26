@@ -58,7 +58,7 @@
 }
 
 .logo:hover {
-    transform: scale(1.2); /* Enlarge the logo on hover */
+    transform: scale(4.6); /* Enlarge the logo on hover */
 }
 
 .mobile-menu-toggle {

@@ -8,6 +8,7 @@ import MatchWallpaperFetcher from '../src/pages/Fetcher'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WallpaperOfTheDay from './pages/WallpaperDay';
 import { useEffect, useState } from 'react';
+import Requested from './pages/Requested';
 
 
 
@@ -71,6 +72,7 @@ function App({ isAuthenticated }) {
                             <Route path="/upload" element={<MatchWallpaperUploader />} />
                             <Route path="/fetch" element={<MatchWallpaperFetcher />} />
                             <Route path="/theday" element={<WallpaperOfTheDay />} />
+                            <Route path="/request" element={<Requested />} />
                         </Routes>
                     </div>
                 </Router>
