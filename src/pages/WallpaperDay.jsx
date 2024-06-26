@@ -9,7 +9,6 @@ const WallpaperOfTheDay = () => {
     const [uploading, setUploading] = useState(false);
     const [wallpapers, setWallpapers] = useState([]);
 
-    // Fetch existing wallpapers
     useEffect(() => {
         const fetchWallpapers = async () => {
             const querySnapshot = await getDocs(collection(firestore, 'wallpaperOfTheDay'));
@@ -45,11 +44,11 @@ const WallpaperOfTheDay = () => {
                 createdAt: new Date(),
             });
 
-            setWallpapers([...wallpapers, { id: docRef.id, title, imageURL }]); // Update state with new wallpaper
+            setWallpapers([...wallpapers, { id: docRef.id, title, imageURL }]);
 
             alert('Wallpaper uploaded successfully!');
-            setImage(null); // Reset image input
-            setTitle('');    // Reset title input
+            setImage(null);
+            setTitle('');
         } catch (error) {
             console.error('Error uploading wallpaper:', error);
             alert('Failed to upload wallpaper.');
@@ -61,14 +60,11 @@ const WallpaperOfTheDay = () => {
     const handleDelete = async (id, imageURL) => {
         if (window.confirm("Are you sure you want to delete this wallpaper?")) {
             try {
-                // Delete from Firestore
                 await deleteDoc(doc(firestore, 'wallpaperOfTheDay', id));
 
-                // Get the file reference and delete from Storage
                 const imageRef = ref(storage, `wallpapers/${imageURL.split('/').pop()}`);
                 await deleteObject(imageRef);
 
-                // Update state to remove the deleted wallpaper
                 setWallpapers(wallpapers.filter(wallpaper => wallpaper.id !== id));
 
                 alert('Wallpaper deleted successfully!');
@@ -88,23 +84,30 @@ const WallpaperOfTheDay = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 disabled={uploading}
+                className="title-input"
             />
             <input
                 type="file"
                 onChange={handleImageChange}
                 disabled={uploading}
+                className="file-input"
             />
-            <button onClick={handleUpload} disabled={uploading}>
+            <button onClick={handleUpload} disabled={uploading} className="upload-button">
                 {uploading ? 'Uploading...' : 'Upload'}
             </button>
 
             <h3>Uploaded Wallpapers</h3>
-            <div className="wallpaper-list">
+            <div className="wallpaper-grid">
                 {wallpapers.map((wallpaper) => (
                     <div key={wallpaper.id} className="wallpaper-item">
                         <h4>{wallpaper.title}</h4>
                         <img src={wallpaper.imageURL} alt={wallpaper.title} className="wallpaper-image" />
-                        <button onClick={() => handleDelete(wallpaper.id, wallpaper.imageURL)}>Delete</button>
+                        <button
+                            onClick={() => handleDelete(wallpaper.id, wallpaper.imageURL)}
+                            className="delete-button"
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </div>
@@ -112,5 +115,4 @@ const WallpaperOfTheDay = () => {
     );
 };
 
-
-export default WallpaperOfTheDay
+export default WallpaperOfTheDay;
