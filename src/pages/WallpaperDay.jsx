@@ -60,16 +60,20 @@ const WallpaperOfTheDay = () => {
     const handleDelete = async (id, imageURL) => {
         if (window.confirm("Are you sure you want to delete this wallpaper?")) {
             try {
+                // Delete Firestore document
                 await deleteDoc(doc(firestore, 'wallpaperOfTheDay', id));
 
-                const imageRef = ref(storage, `wallpapers/${imageURL.split('/').pop()}`);
+                // Extracting the correct path from the URL
+                const storagePath = imageURL.split('?')[0].split('/o/')[1];
+                const imageRef = ref(storage, decodeURIComponent(storagePath));
                 await deleteObject(imageRef);
 
+                // Update local state
                 setWallpapers(wallpapers.filter(wallpaper => wallpaper.id !== id));
 
                 alert('Wallpaper deleted successfully!');
             } catch (error) {
-                console.error('Error deleting wallpaper:', error);
+                console.error('Error deleting wallpaper:', error.message);
                 alert('Failed to delete wallpaper.');
             }
         }
