@@ -1,6 +1,8 @@
 /* MatchWallpaperFetcher.css */
 
 .fetcher-container {
+    background: linear-gradient(to bottom right, #e96443, #904e95);
+
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -37,6 +39,7 @@
 }
 
 .wallpapers-grid {
+    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
     gap: 20px; /* Space between grid items */
@@ -44,6 +47,7 @@
 }
 
 .wallpaper-item {
+
     position: relative; /* For positioning the hover effect */
     overflow: hidden;
     border-radius: 8px; /* Rounded corners */
