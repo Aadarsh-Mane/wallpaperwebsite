@@ -1,5 +1,9 @@
+
+
 .App {
   text-align: center;
+
+  
 }
 
 .App-logo {
@@ -12,7 +16,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background: linear-gradient(to bottom right, #e96443, #904e95);
+
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
