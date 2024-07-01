@@ -8,7 +8,9 @@ body {
 }
 
 .home {
-    background: linear-gradient(to bottom right, #f9f9f9, #e0e0e0);
+    /* background: linear-gradient(to bottom right, #9e8a8a, #e0e0e0); */
+    background: linear-gradient(to bottom right, #2C3E50, #4CA1AF);
+
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -21,7 +23,9 @@ body {
 .home-content {
     text-align: center;
     margin-top: 50px;
-    background: white;
+    /* background: white; */
+    background: linear-gradient(to bottom right, #e96443, #904e95);
+
     padding: 40px 20px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -44,7 +48,9 @@ body {
 
 .slogan {
     font-size: 1.5rem;
-    color: #666;
+    font-family:'Gill Sans', 'Gill Sans MT';
+
+    color: #e3e1e1;
     margin-bottom: 30px;
     animation: fadeIn 1.5s ease-out;
 }
@@ -67,7 +73,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #555;
+    background-color: #4cdbe8;
     transform: translateY(-2px);
 }
 
