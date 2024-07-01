@@ -93,7 +93,36 @@ function PlayerWallpaperManager() {
     };
 
     // Delete wallpaper from Firebase Storage and Firestore
+    const handleDelete = async (wallpaper) => {
+        const confirmed = window.confirm("Are you sure you want to delete this wallpaper?");
+        if (!confirmed) return;
 
+        try {
+            // Log storagePath to verify it
+            console.log("Deleting wallpaper with storage path:", wallpaper.storagePath);
+
+            if (!wallpaper.storagePath) {
+                console.error("Invalid storage path:", wallpaper.storagePath);
+                return;
+            }
+
+            // Delete from Firebase Storage
+            const storageRef = ref(storage, wallpaper.storagePath);
+            await deleteObject(storageRef);
+
+            // Remove from Firestore
+            const playerDocRef = doc(firestore, "players", selectedPlayer);
+            const playerData = await getDoc(playerDocRef);
+            if (playerData.exists()) {
+                const updatedWallpapers = playerData.data().wallpapers.filter(wp => wp.url !== wallpaper.url);
+                await updateDoc(playerDocRef, { wallpapers: updatedWallpapers });
+                setPlayerWallpapers(updatedWallpapers); // Update the state
+            }
+        } catch (error) {
+            console.error("Error deleting wallpaper:", error);
+            alert("Failed to delete wallpaper. Please try again later.");
+        }
+    };
 
     // Fetch wallpapers when selectedPlayer changes
     useEffect(() => {
