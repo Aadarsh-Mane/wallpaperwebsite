@@ -2,7 +2,8 @@ html {
   all: unset;
 }
 body {
-  background: white;
+  /* background: white; */
+  background: black;
 }
 .uploader-container {
   max-width: 600px;

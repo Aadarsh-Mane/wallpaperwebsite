@@ -1,104 +1,104 @@
 /* Home.css */
 
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #fafafa;
-    color: #333;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: black;
+  color: #333;
 }
 
 .home {
-    /* background: linear-gradient(to bottom right, #9e8a8a, #e0e0e0); */
-    background: linear-gradient(to bottom right, #2C3E50, #4CA1AF);
+  /* background: linear-gradient(to bottom right, #9e8a8a, #e0e0e0); */
+  background: linear-gradient(to bottom right, #2c3e50, #4ca1af);
 
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .home-content {
-    text-align: center;
-    margin-top: 50px;
-    /* background: white; */
-    background: linear-gradient(to bottom right, #e96443, #904e95);
+  text-align: center;
+  margin-top: 50px;
+  /* background: white; */
+  background: linear-gradient(to bottom right, #e96443, #904e95);
 
-    padding: 40px 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
 }
 
 .company-namee {
-    font-size: 4rem;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    animation: fadeIn 1s ease-out;
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: fadeIn 1s ease-out;
 }
 .company-namee:hover {
-    color: #f39c12; /* Change color on hover */
+  color: #f39c12; /* Change color on hover */
 }
 
 .slogan {
-    font-size: 1.5rem;
-    font-family:'Gill Sans', 'Gill Sans MT';
+  font-size: 1.5rem;
+  font-family: "Gill Sans", "Gill Sans MT";
 
-    color: #e3e1e1;
-    margin-bottom: 30px;
-    animation: fadeIn 1.5s ease-out;
+  color: #e3e1e1;
+  margin-bottom: 30px;
+  animation: fadeIn 1.5s ease-out;
 }
 
 .cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    animation: fadeIn 2s ease-out;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  animation: fadeIn 2s ease-out;
 }
 
 .cta-button {
-    padding: 15px 30px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 15px 30px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-button:hover {
-    background-color: #4cdbe8;
-    transform: translateY(-2px);
+  background-color: #4cdbe8;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    .company-namee {
-        font-size: 3rem;
-    }
+  .company-namee {
+    font-size: 3rem;
+  }
 
-    .slogan {
-        font-size: 1.2rem;
-    }
+  .slogan {
+    font-size: 1.2rem;
+  }
 
-    .cta-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

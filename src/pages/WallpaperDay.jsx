@@ -2,12 +2,16 @@ import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore"
 import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { firestore, storage } from "../services/firebase";
-import '../styles/WallpaperDay.css'
+import '../styles/WallpaperDay.css';
+import { v4 as uuidv4 } from "uuid";  // Import UUID library
+
 const WallpaperOfTheDay = () => {
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
     const [uploading, setUploading] = useState(false);
     const [wallpapers, setWallpapers] = useState([]);
+    const [isPremium, setIsPremium] = useState(false); // New state for premium status
 
     useEffect(() => {
         const fetchWallpapers = async () => {
@@ -26,8 +30,8 @@ const WallpaperOfTheDay = () => {
     };
 
     const handleUpload = async () => {
-        if (!image || !title) {
-            alert('Please select an image and provide a title.');
+        if (!image || !title || !price) {
+            alert('Please select an image, provide a title and a price.');
             return;
         }
 
@@ -38,17 +42,25 @@ const WallpaperOfTheDay = () => {
             await uploadBytes(storageRef, image);
             const imageURL = await getDownloadURL(storageRef);
 
+            // Generate a unique wallpaper ID
+            const wallpaperId = uuidv4();
+
             const docRef = await addDoc(collection(firestore, 'wallpaperOfTheDay'), {
+                wallpaperId,  // Include the generated ID
                 title,
                 imageURL,
+                price: parseFloat(price),
+                isPremium, // Save premium status
                 createdAt: new Date(),
             });
 
-            setWallpapers([...wallpapers, { id: docRef.id, title, imageURL }]);
+            setWallpapers([...wallpapers, { id: docRef.id, wallpaperId, title, imageURL, price: parseFloat(price), isPremium }]);
 
             alert('Wallpaper uploaded successfully!');
             setImage(null);
             setTitle('');
+            setPrice('');
+            setIsPremium(false);
         } catch (error) {
             console.error('Error uploading wallpaper:', error);
             alert('Failed to upload wallpaper.');
@@ -91,11 +103,30 @@ const WallpaperOfTheDay = () => {
                 className="title-input"
             />
             <input
+                type="text"
+                placeholder="Price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                disabled={uploading}
+                className="price-input"
+            />
+            <input
                 type="file"
                 onChange={handleImageChange}
                 disabled={uploading}
                 className="file-input"
             />
+            <div>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={isPremium}
+                        onChange={(e) => setIsPremium(e.target.checked)}
+                        disabled={uploading}
+                    />
+                    Premium Wallpaper
+                </label>
+            </div>
             <button onClick={handleUpload} disabled={uploading} className="upload-button">
                 {uploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -106,6 +137,8 @@ const WallpaperOfTheDay = () => {
                     <div key={wallpaper.id} className="wallpaper-item">
                         <h4>{wallpaper.title}</h4>
                         <img src={wallpaper.imageURL} alt={wallpaper.title} className="wallpaper-image" />
+                        <p>Price: ${wallpaper.price}</p>
+                        <p>{wallpaper.isPremium ? 'Premium' : 'Free'}</p>
                         <button
                             onClick={() => handleDelete(wallpaper.id, wallpaper.imageURL)}
                             className="delete-button"
