@@ -24,6 +24,7 @@ const Navbar = () => {
                 <Link to="/theday" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Wallpaper of the Day</Link>
                 <Link to="/player" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Players</Link>
                 <Link to="/request" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Request Box</Link>
+                <Link to="/promotion" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Promotion</Link>
             </div>
             <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
                 ☰

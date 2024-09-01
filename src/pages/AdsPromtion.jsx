@@ -5,17 +5,16 @@ import { firestore, storage } from "../services/firebase";
 import '../styles/WallpaperDay.css';
 import { v4 as uuidv4 } from "uuid";  // Import UUID library
 
-const WallpaperOfTheDay = () => {
+const Ads = () => {
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
-    const [price, setPrice] = useState('');
     const [uploading, setUploading] = useState(false);
     const [wallpapers, setWallpapers] = useState([]);
-    const [isLock, setisLock] = useState(false); // New state for premium status
+    const [isPremium, setIsPremium] = useState(false); // New state for premium status
 
     useEffect(() => {
         const fetchWallpapers = async () => {
-            const querySnapshot = await getDocs(collection(firestore, 'wallpaperOfTheDay'));
+            const querySnapshot = await getDocs(collection(firestore, 'ads'));
             const fetchedWallpapers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setWallpapers(fetchedWallpapers);
         };
@@ -30,8 +29,8 @@ const WallpaperOfTheDay = () => {
     };
 
     const handleUpload = async () => {
-        if (!image || !title || !price) {
-            alert('Please select an image, provide a title and a price.');
+        if (!image || !title) {
+            alert('Please select an image, provide a title.');
             return;
         }
 
@@ -40,27 +39,24 @@ const WallpaperOfTheDay = () => {
         const storageRef = ref(storage, `wallpapers/${image.name}`);
         try {
             await uploadBytes(storageRef, image);
-            const imageURL = await getDownloadURL(storageRef);
+            const urlimage = await getDownloadURL(storageRef);
 
             // Generate a unique wallpaper ID
             const wallpaperId = uuidv4();
 
-            const docRef = await addDoc(collection(firestore, 'wallpaperOfTheDay'), {
+            const docRef = await addDoc(collection(firestore, 'ads'), {
                 wallpaperId,  // Include the generated ID
                 title,
-                imageURL,
-                price: parseFloat(price),
-                isLock, // Save premium status
+                urlimage,
                 createdAt: new Date(),
             });
 
-            setWallpapers([...wallpapers, { id: docRef.id, wallpaperId, title, imageURL, price: parseFloat(price), isLock }]);
+            setWallpapers([...wallpapers, { id: docRef.id, wallpaperId, title, urlimage }]);
 
             alert('Wallpaper uploaded successfully!');
             setImage(null);
             setTitle('');
-            setPrice('');
-            setisLock(false);
+
         } catch (error) {
             console.error('Error uploading wallpaper:', error);
             alert('Failed to upload wallpaper.');
@@ -69,14 +65,14 @@ const WallpaperOfTheDay = () => {
         }
     };
 
-    const handleDelete = async (id, imageURL) => {
+    const handleDelete = async (id, urlimage) => {
         if (window.confirm("Are you sure you want to delete this wallpaper?")) {
             try {
                 // Delete Firestore document
-                await deleteDoc(doc(firestore, 'wallpaperOfTheDay', id));
+                await deleteDoc(doc(firestore, 'ads', id));
 
                 // Extracting the correct path from the URL
-                const storagePath = imageURL.split('?')[0].split('/o/')[1];
+                const storagePath = urlimage.split('?')[0].split('/o/')[1];
                 const imageRef = ref(storage, decodeURIComponent(storagePath));
                 await deleteObject(imageRef);
 
@@ -102,31 +98,14 @@ const WallpaperOfTheDay = () => {
                 disabled={uploading}
                 className="title-input"
             />
-            <input
-                type="text"
-                placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                disabled={uploading}
-                className="price-input"
-            />
+
             <input
                 type="file"
                 onChange={handleImageChange}
                 disabled={uploading}
                 className="file-input"
             />
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={isLock}
-                        onChange={(e) => setisLock(e.target.checked)}
-                        disabled={uploading}
-                    />
-                    Premium Wallpaper
-                </label>
-            </div>
+
             <button onClick={handleUpload} disabled={uploading} className="upload-button">
                 {uploading ? 'Uploading...' : 'Upload'}
             </button>
@@ -136,11 +115,9 @@ const WallpaperOfTheDay = () => {
                 {wallpapers.map((wallpaper) => (
                     <div key={wallpaper.id} className="wallpaper-item">
                         <h4>{wallpaper.title}</h4>
-                        <img src={wallpaper.imageURL} alt={wallpaper.title} className="wallpaper-image" />
-                        <p>Price: ${wallpaper.price}</p>
-                        <p>{wallpaper.isLock ? 'Premium' : 'Free'}</p>
+                        <img src={wallpaper.urlimage} alt={wallpaper.title} className="wallpaper-image" />
                         <button
-                            onClick={() => handleDelete(wallpaper.id, wallpaper.imageURL)}
+                            onClick={() => handleDelete(wallpaper.id, wallpaper.urlimage)}
                             className="delete-button"
                         >
                             Delete
@@ -152,4 +129,4 @@ const WallpaperOfTheDay = () => {
     );
 };
 
-export default WallpaperOfTheDay;
+export default Ads;
